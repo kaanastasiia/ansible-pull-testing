@@ -1,5 +1,5 @@
 ---
-- hosts: ubuntu
+- hosts: localhost
   become: true
   tasks:
   - name: Install Apache
@@ -15,18 +15,3 @@
       src: index.html
       dest: /var/www/html/index.html
 
-- hosts: centos
-  remote_user: root
-  tasks:
-  - name: Install Apache
-    ansible.builtin.yum:
-      name: httpd
-  - name: Start Apache
-    ansible.builtin.service:
-      name: httpd
-      state: started
-      enabled: true
-  - name: Copy index.html
-    ansible.builtin.copy:
-      src: index.html
-      dest: /var/www/html/index.html
